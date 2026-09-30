@@ -1,0 +1,41 @@
+# Personal deploy config for the Tasting Notes plugin (NOT part of the
+# upstream PR to BasedHardware/omi -- it lives on the deploy/fly branch).
+#
+# The image is prebuilt (the Dockerfile needs the repo's plugins/ directory
+# as its build context, which flyctl can't express), pushed to GHCR, and
+# referenced below. See deploy/DEPLOY_FLY.md for the build/push steps.
+#
+# If "omi-tasting-notes" is taken on fly.dev, pick your own name.
+
+app = "omi-tasting-notes"
+primary_region = "yyz" # Toronto -- closest to the user
+
+[build]
+  image = "ghcr.io/thomasthinks/omi-tasting-notes:latest"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]
+
+[[http_service.checks]]
+  grace_period = "10s"
+  interval = "30s"
+  method = "GET"
+  path = "/health"
+  timeout = "5s"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"
+
+[mounts]
+  source = "tasting_data"
+  destination = "/data"
+
+[env]
+  TASTING_DATA_DIR = "/data"
+  PORT = "8080"
