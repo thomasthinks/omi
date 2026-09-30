@@ -49,6 +49,8 @@ fly ips allocate-v4 --shared --app omi-tasting-notes
 ## 2. Deploy
 
 ```bash
+# re-derive SHA if this is a new shell (step 0 set it only in its own shell)
+SHA=$(git rev-parse --short HEAD)
 fly deploy --config deploy/fly.toml --image ghcr.io/thomasthinks/omi-tasting-notes:$SHA
 ```
 
