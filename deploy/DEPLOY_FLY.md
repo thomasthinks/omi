@@ -75,7 +75,10 @@ private.
    Productivity), and a one-line description, e.g. "Log structured tasting
    notes for wine, coffee, whiskey, and beer."
 3. **Capabilities.** Tick **External Integration** only. That opens the
-   External Integration section below.
+   External Integration section below, plus a mandatory **GitHub Repository
+   URL** field (the app requires it for any External Integration app; the
+   backend just stores it). Use the PR branch's plugin folder:
+   `https://github.com/thomasthinks/omi/tree/tasting-notes-plugin/plugins/omi-tasting-notes-app`
 4. **Fill the External Integration section exactly:**
 
    | Field | Value |
