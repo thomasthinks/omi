@@ -48,7 +48,7 @@ Safe to re-run; every step skips work that's already done. What it does:
 8. Polls `https://omi-tasting-notes.fly.dev/health` for up to 5 minutes and
    prints the start of the tool manifest.
 
-`deploy/fly.toml` keeps one warm machine (`min_machines_running = 1`, so the
+`deploy/fly.toml` keeps one machine always on (`auto_stop_machines = "off"`, so the
 ambient webhook never cold-starts), wires `/health` checks, and mounts the
 `tasting_data` volume at `/data` (`TASTING_DATA_DIR=/data`).
 
