@@ -11,7 +11,7 @@ app = "omi-tasting-notes"
 primary_region = "yyz" # Toronto -- closest to the user
 
 [build]
-  image = "ghcr.io/thomasthinks/omi-tasting-notes:latest"
+  image = "registry.fly.io/omi-tasting-notes:latest"
 
 [http_service]
   internal_port = 8080
